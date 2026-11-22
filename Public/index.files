@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#101010">
+
+<title>Ballon d'Or Ngoumou 2026 | CLASSICO</title>
+
+<style>
+
+* {
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+body {
+
+  font-family: Arial, sans-serif;
+
+  background: #101010;
+
+  color: white;
+
+}
+
+header {
+
+  background: #181818;
+
+  padding: 22px 15px;
+
+  text-align: center;
+
+  border-bottom: 2px solid #c9a227;
+
+}
+
+.logo {
+
+  font-size: 27px;
+
+  font-weight: bold;
+
+  color: #e7bd48;
+
+}
+
+header p {
+
+  margin-top: 8px;
+
+  color: #ccc;
+
+}
+
+.hero {
+
+  text-align: center;
+
+  padding: 55px 15px;
+
+  background: linear-gradient(135deg,#222,#080808);
+
+}
+
+.hero h1 {
+
+  font-size: 32px;
+
+  color: #e7bd48;
+
+  margin-bottom: 15px;
+
+}
+
+.hero p {
+
+  color: #ddd;
+
+  line-height: 1.6;
+
+}
+
+.badge {
+
+  display: inline-block;
+
+  margin-top: 20px;
+
+  background: #c9a227;
+
+  color: black;
+
+  padding: 12px 22px;
+
+  border-radius: 25px;
+
+  font-weight: bold;
+
+}
+
+.container {
+
+  max-width: 1000px;
+
+  margin: auto;
+
+  padding: 25px 15px;
+
+}
+
+.section-title {
+
+  color: #e7bd48;
+
+  font-size: 24px;
+
+  margin: 25px 0;
+
+  text-align: center;
+
+}
+
+.candidates {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit,minmax(145px,1fr));
+
+  gap: 15px;
+
+}
+
+.card {
+
+  background: #202020;
+
+  border: 1px solid #444;
+
+  border-radius: 13px;
+
+  padding: 20px 10px;
+
+  text-align: center;
+
+}
+
+.avatar {
+
+  font-size: 48px;
+
+  margin-bottom: 12px;
+
+}
+
+.card h3 {
+
+  font-size: 16px;
+
+  margin-bottom: 10px;
+
+}
+
+.votes {
+
+  color: #e7bd48;
+
+  font-weight: bold;
+
+  margin-bottom: 12px;
+
+}
+
+button {
+
+  background: #d5ad35;
+
+  color: #111;
+
+  border: none;
+
+  border-radius: 7px;
+
+  padding: 12px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  width: 100%;
+
+}
+
+button:hover {
+
+  background: #f0ce66;
+
+}
+
+.form-box {
+
+  background: #202020;
+
+  padding: 22px;
+
+  border-radius: 12px;
+
+  max-width: 500px;
+
+  margin: 30px auto;
+
+  border: 1px solid #c9a227;
+
+}
+
+.form-box label {
+
+  display: block;
+
+  margin: 15px 0 7px;
+
+}
+
+input, select {
+
+  width: 100%;
+
+  padding: 13px;
+
+  border-radius: 7px;
+
+  border: 1px solid #555;
+
+  background: #111;
+
+  color: white;
+
+}
+
+.form-box button {
+
+  margin-top: 20px;
+
+}
+
+.notice {
+
+  font-size: 12px;
+
+  color: #bbb;
+
+  margin-top: 12px;
+
+  line-height: 1.5;
+
+}
+
+footer {
+
+  text-align: center;
+
+  background: #080808;
+
+  padding: 30px 15px;
+
+  margin-top: 40px;
+
+  color: #aaa;
+
+  line-height: 1.8;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">🏆 CLASSICO</div>
+
+  <p>BALLON D'OR NGOUMOU 2026</p>
+
+</header>
+
+<section class="hero">
+
+  <h1>À VOUS DE CHOISIR !</h1>
+
+  <p>
+
+    Qui mérite le Ballon d'Or de Ngoumou 2026 ?<br>
+
+    Soutenez votre joueur préféré et participez au vote.
+
+  </p>
+
+  <div class="badge">1 VOTE = 100 FCFA</div>
+
+</section>
+
+<main class="container">
+
+  <h2 class="section-title">⚽ BALLON D'OR 2026</h2>
+
+  <div class="candidates" id="joueurs"></div>
+
+  <h2 class="section-title">🧤 MEILLEUR GARDIEN</h2>
+
+  <div class="candidates" id="gardiens"></div>
+
+  <section class="form-box" id="vote">
+
+    <h2 style="color:#e7bd48;text-align:center">
+
+      🏆 VOTER MAINTENANT
+
+    </h2>
+
+    <form id="voteForm">
+
+      <label>Catégorie</label>
+
+      <select id="categorie" required>
+
+        <option value="ballon_or">Ballon d'Or</option>
+
+        <option value="gardien">Meilleur gardien</option>
+
+      </select>
+
+      <label>Candidat</label>
+
+      <select id="candidat" required></select>
+
+      <label>Nombre de votes</label>
+
+      <input type="number" id="quantite"
+
+        min="1" max="100" value="1" required>
+
+      <label>Adresse e-mail</label>
+
+      <input type="email" id="email"
+
+        placeholder="Votre adresse e-mail" required>
+
+      <p style="margin-top:15px;color:#e7bd48">
+
+        Montant à payer : <strong id="montant">100 FCFA</strong>
+
+      </p>
+
+      <button type="submit" id="submitBtn">
+
+        CONTINUER VERS LE PAIEMENT
+
+      </button>
+
+      <p class="notice">
+
+        Chaque vote coûte 100 FCFA. Le vote sera comptabilisé
+
+        uniquement après confirmation effective du paiement.
+
+      </p>
+
+    </form>
+
+    <p id="message" style="margin-top:15px"></p>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <strong>CLASSICO</strong><br>
+
+  Ballon d'Or Ngoumou 2026<br>
+
+  © Tous droits réservés.
+
+</footer>
+
+<script>
+
+let joueurs = [];
+
+let gardiens = [];
+
+const joueursDiv = document.getElementById("joueurs");
+
+const gardiensDiv = document.getElementById("gardiens");
+
+const categorie = document.getElementById("categorie");
+
+const candidat = document.getElementById("candidat");
+
+const quantite = document.getElementById("quantite");
+
+const montant = document.getElementById("montant");
+
+function afficherCandidats() {
+
+  joueursDiv.innerHTML = "";
+
+  gardiensDiv.innerHTML = "";
+
+  joueurs.forEach(nom => {
+
+    joueursDiv.innerHTML += `
+
+      <div class="card">
+
+        <div class="avatar">⚽</div>
+
+        <h3>${nom}</h3>
+
+        <div class="votes">Candidat officiel</div>
+
+        <button onclick="selectionner('${nom}','ballon_or')">
+
+          VOTER
+
+        </button>
+
+      </div>`;
+
+  });
+
+  gardiens.forEach(nom => {
+
+    gardiensDiv.innerHTML += `
+
+      <div class="card">
+
+        <div class="avatar">🧤</div>
+
+        <h3>${nom}</h3>
+
+        <div class="votes">Candidat officiel</div>
+
+        <button onclick="selectionner('${nom}','gardien')">
+
+          VOTER
+
+        </button>
+
+      </div>`;
+
+  });
+
+  actualiserSelect();
+
+}
+
+function actualiserSelect() {
+
+  const liste = categorie.value === "gardien" ? gardiens : joueurs;
+
+  candidat.innerHTML = liste.map(nom =>
+
+    `<option value="${nom}">${nom}</option>`
+
+  ).join("");
+
+}
+
+function selectionner(nom, type) {
+
+  categorie.value = type;
+
+  actualiserSelect();
+
+  candidat.value = nom;
+
+  document.getElementById("vote").scrollIntoView({
+
+    behavior: "smooth"
+
+  });
+
+}
+
+function calculerMontant() {
+
+  const nombre = Number(quantite.value);
+
+  montant.textContent =
+
+    Number.isInteger(nombre) && nombre > 0
+
+    ? (nombre * 100).toLocaleString("fr-FR") + " FCFA"
+
+    : "0 FCFA";
+
+}
+
+categorie.addEventListener("change", actualiserSelect);
+
+quantite.addEventListener("input", calculerMontant);
+
+async function charger() {
+
+  try {
+
+    const response = await fetch("/");
+
+    const data = await response.json();
+
+    joueurs = data.categories.ballon_or;
+
+    gardiens = data.categories.meilleur_gardien;
+
+    afficherCandidats();
+
+  } catch (error) {
+
+    document.getElementById("message").textContent =
+
+      "Impossible de charger les candidats. Réessayez plus tard.";
+
+  }
+
+}
+
+document.getElementById("voteForm").addEventListener("submit",
+
+async function(e) {
+
+  e.preventDefault();
+
+  const bouton = document.getElementById("submitBtn");
+
+  const message = document.getElementById("message");
+
+  bouton.disabled = true;
+
+  bouton.textContent = "Préparation...";
+
+  try {
+
+    const response = await fetch("/api/voter", {
+
+      method: "POST",
+
+      headers: {
+
+        "Content-Type": "application/json"
+
+      },
+
+      body: JSON.stringify({
+
+        candidat: candidat.value,
+
+        categorie: categorie.value,
+
+        quantite: Number(quantite.value),
+
+        email: document.getElementById("email").value
+
+      })
+
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) throw new Error(data.error);
+
+    window.location.href = data.paiement;
+
+  } catch (error) {
+
+    message.textContent = error.message ||
+
+      "Une erreur est survenue.";
+
+  } finally {
+
+    bouton.disabled = false;
+
+    bouton.textContent = "CONTINUER VERS LE PAIEMENT";
+
+  }
+
+});
+
+charger();
+
+calculerMontant();
+
+</script>
+
+</body>
+
+</html>
